@@ -5,12 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exotic Club</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;700&display=swap');
+
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Esto asegurará que no haya barras de desplazamiento */
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 200; /* Aplicar peso delgado */
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-start; /* Cambiado a flex-start */
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+            color: white;
+        }
+        .navbar .logo {
+            width: 90px;
+            margin-left: -20px; /* Ajusta este valor según sea necesario */
+            margin-right: 20px; /* Añadir margen derecho al logo */
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            align-items: center; /* Alinear elementos al centro verticalmente */
+            font-size: 12px; /* Reducir el tamaño de la fuente del menú */
+        }
+        .navbar ul li {
+            display: inline;
+            cursor: pointer;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            text-align: center; /* Alinear texto a la izquierda */
+            padding: 10px; /* Aumentar el padding para mejorar accesibilidad */
+            font-weight: 200; /* Aplicar peso delgado */
+        }
+        .navbar ul li a:hover {
+            background-color: #5C4535;
+        }
+        .navbar .icons {
+            display: flex;
+            gap: 15px;
+            margin-left: auto; /* Añadir margen izquierdo automático */
+        }
+        .navbar .icons img {
+            width: 22px; /* Tamaño de los iconos */
+            height: auto;
+            cursor: pointer;
         }
         .image-container {
             position: relative;
@@ -19,19 +69,19 @@
         }
         .image-container img {
             width: 100%;
-            height: 109%;
-            object-fit: cover; /* Esto asegurará que la imagen cubra toda el área del contenedor */
+            height: 100%;
+            object-fit: cover;
         }
         .hotspot {
             position: absolute;
-            width: 15px; /* Tamaño del círculo */
+            width: 15px;
             height: 15px;
-            background-color: white; /* Color del círculo */
+            background-color: white;
             border-radius: 50%;
-            border: 0px solid #ffffff; /* Borde del círculo */
+            border: 0px solid #ffffff;
             cursor: pointer;
             z-index: 10;
-            animation: fade 2s infinite; /* Animación de opacidad */
+            animation: fade 2s infinite;
         }
         @keyframes fade {
             0%, 100% {
@@ -58,13 +108,36 @@
                 opacity: 0;
             }
         }
+        @media only screen and (max-width: 768px) {
+            .hotspot {
+                width: 10px;
+                height: 10px;
+            }
+            .circle-animation {
+                width: 70px;
+                height: 70px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <img src="tu-logo.png" class="logo" alt="Exotic Club Logo">
+        <ul>
+            <li><a href="https://exoticclub.mitiendanube.com/">Inicio Fake</a></li>
+            <li><a href="https://exoticclub.mitiendanube.com/productos/">Productos</a></li>
+            <li><a href="https://exoticclub.mitiendanube.com/contacto/">Contacto</a></li>
+        </ul>
+        <div class="icons">
+            <a href="#search"><img src="icono-buscar.png" alt="Buscar"></a>
+            <a href="#account"><img src="icono-cuenta.png" alt="Cuenta"></a>
+            <a href="#cart"><img src="icono-carrito.png" alt="Carrito"></a>
+        </div>
+    </div>
     <div class="image-container">
-        <img src="Exotic-Web-Preview-Edited-10.png" usemap="#image-map" alt="Exotic Web Render Preview">
-        <div class="hotspot" style="top: 80%; left: 24.6%;" onclick="window.open('https://exoticclub.mitiendanube.com/productos/tee-1/', '_blank');"></div>
-        <div class="hotspot" style="top: 88%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/tee-2/';"></div>
+        <img src="Exotic-Web-RenderPreview11.png" usemap="#image-map" alt="Exotic Web Render Preview">
+        <div class="hotspot" style="top: 78%; left: 24.6%;" onclick="window.open('https://exoticclub.mitiendanube.com/productos/tee-1/', '_blank');"></div>
+        <div class="hotspot" style="top: 86%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/tee-2/';"></div>
         <map name="image-map">
             <area target="_blank" alt="Tee 1" title="Tee 1" href="https://exoticclub.mitiendanube.com/productos/tee-1/" coords="493,807,29" shape="circle">
             <area target="" alt="Tee 2" title="Tee 2" href="https://exoticclub.mitiendanube.com/productos/tee-2/" coords="840,888,34" shape="circle">
@@ -75,11 +148,10 @@
         document.querySelectorAll('.hotspot').forEach(hotspot => {
             const circle = document.createElement('div');
             circle.classList.add('circle-animation');
-            circle.style.width = '100px';  // Tamaño del círculo animado
+            circle.style.width = '100px';
             circle.style.height = '100px';
-            // Centra la animación en el hotspot
-            circle.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 50) + 'px';  // Ajuste
-            circle.style.top = (hotspot.offsetTop + (hotspot.clientHeight / 2) - 50) + 'px';    // Ajuste
+            circle.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 50) + 'px';
+            circle.style.top = (hotspot.offsetTop + (hotspot.clientHeight / 2) - -20) + 'px';
             document.body.appendChild(circle);
         });
     </script>
