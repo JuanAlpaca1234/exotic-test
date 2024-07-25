@@ -64,11 +64,13 @@
             position: relative;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .image-container img, .image-container .hotspot, .circle-animation {
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* Ajuste de la duración y la función de temporización */
+        }
+        .image-container:hover img, .image-container:hover .hotspot, .image-container:hover .circle-animation {
+            transform: scale(1.1);
         }
         .hotspot {
             position: absolute;
@@ -106,6 +108,26 @@
                 opacity: 0;
             }
         }
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            font-family: 'Helvetica', sans-serif;
+            border-radius: 5px;
+            padding: 5px 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+            white-space: nowrap;
+            z-index: 100;
+            transform: translate(-50%, -10px); /* Ajusta la posición del tooltip */
+        }
+        /* Elimina el pseudo-elemento :after para la flecha */
+        .tooltip:after {
+            content: none;
+        }
         @media only screen and (max-width: 768px) {
             .hotspot {
                 width: 10px;
@@ -133,19 +155,25 @@
         </div>
     </div>
     <div class="image-container">
-        <img src="Exotic-Web-RenderPreview11.png" usemap="#image-map" alt="Exotic Web Render Preview">
-        <div class="hotspot" style="top: 78%; left: 24.6%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/';"></div>
-        <div class="hotspot" style="top: 86%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/';"></div>
-        <div class="hotspot" style="top: 47%; left: 56%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/exotic-club-card/';"></div> <!-- Nuevo hotspot -->
+        <img src="Exotic-Web-Preview-Edited-14.png" usemap="#image-map" alt="Exotic Web Render Preview">
+        <div class="hotspot" style="top: 78%; left: 24.6%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/';" data-tooltip="Zip Up Hoodie Creme"></div>
+        <div class="hotspot" style="top: 86%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/';" data-tooltip="Zip Up Hoodie Grey"></div>
+        <div class="hotspot" style="top: 47%; left: 56%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/exotic-club-card/';" data-tooltip="Exotic Club Card"></div>
         <map name="image-map">
             <area target="" alt="Zip Up Hoodie Creme" title="Zip Up Hoodie Creme" href="https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/" coords="493,807,29" shape="circle">
             <area target="" alt="Zip Up Hoodie Grey" title="Zip Up Hoodie Grey" href="https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/" coords="840,888,34" shape="circle">
-            <area target="" alt="Exotic Club Card" title="Exotic Club Card" href="https://exoticclub.mitiendanube.com/productos/exotic-club-card/" coords="600,700,30" shape="circle"> <!-- Nueva área -->
+            <area target="" alt="Exotic Club Card" title="Exotic Club Card" href="https://exoticclub.mitiendanube.com/productos/exotic-club-card/" coords="600,700,30" shape="circle">
         </map>
     </div>
     
     <script>
-        document.querySelectorAll('.hotspot').forEach(hotspot => {
+        const imageContainer = document.querySelector('.image-container');
+        const image = imageContainer.querySelector('img');
+        const hotspots = document.querySelectorAll('.hotspot');
+        const circles = [];
+        const tooltips = [];
+
+        hotspots.forEach(hotspot => {
             const circle = document.createElement('div');
             circle.classList.add('circle-animation');
             circle.style.width = '100px';
@@ -153,6 +181,43 @@
             circle.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 50) + 'px';
             circle.style.top = (hotspot.offsetTop + (hotspot.clientHeight / 2) - -20) + 'px';
             document.body.appendChild(circle);
+            circles.push(circle);
+
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+            tooltip.textContent = hotspot.getAttribute('data-tooltip');
+            tooltip.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 73) + 'px';
+            tooltip.style.top = (hotspot.offsetTop - (tooltip.clientHeight / 2) - -40) + 'px'; // Posicionar el tooltip arriba del hotspot
+            document.body.appendChild(tooltip);
+            tooltips.push(tooltip);
+
+            hotspot.addEventListener('mouseover', () => {
+                tooltip.style.opacity = 1;
+            });
+
+            hotspot.addEventListener('mouseout', () => {
+                tooltip.style.opacity = 0;
+            });
+        });
+
+        imageContainer.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 20 - 10;
+            const y = (e.clientY / window.innerHeight) * 20 - 10;
+            image.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+            hotspots.forEach((hotspot, index) => {
+                hotspot.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+                circles[index].style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+                tooltips[index].style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        imageContainer.addEventListener('mouseleave', () => {
+            image.style.transform = 'scale(1)';
+            hotspots.forEach((hotspot, index) => {
+                hotspot.style.transform = 'scale(1)';
+                circles[index].style.transform = 'scale(1)';
+                tooltips[index].style.transform = 'none';
+            });
         });
     </script>
 </body>
