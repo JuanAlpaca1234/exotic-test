@@ -4,158 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exotic Club</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;700&display=swap');
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 200; /* Aplicar peso delgado */
-        }
-        .navbar {
-            display: flex;
-            justify-content: flex-start; /* Cambiado a flex-start */
-            align-items: center;
-            background-color: #000;
-            padding: 10px 20px;
-            color: white;
-        }
-        .navbar .logo {
-            width: 90px;
-            margin-left: -20px; /* Ajusta este valor según sea necesario */
-            margin-right: 20px; /* Añadir margen derecho al logo */
-        }
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-            align-items: center; /* Alinear elementos al centro verticalmente */
-            font-size: 12px; /* Reducir el tamaño de la fuente del menú */
-        }
-        .navbar ul li {
-            display: inline;
-            cursor: pointer;
-        }
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            text-align: center; /* Alinear texto a la izquierda */
-            padding: 10px; /* Aumentar el padding para mejorar accesibilidad */
-            font-weight: 200; /* Aplicar peso delgado */
-        }
-        
-        .navbar .icons {
-            display: flex;
-            gap: 15px;
-            margin-left: auto; /* Añadir margen izquierdo automático */
-        }
-        .navbar .icons img {
-            width: 22px; /* Tamaño de los iconos */
-            height: auto;
-            cursor: pointer;
-        }
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .image-container img, .image-container .hotspot, .circle-animation {
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* Ajuste de la duración y la función de temporización */
-        }
-        .image-container:hover img, .image-container:hover .hotspot, .image-container:hover .circle-animation {
-            transform: scale(1.1);
-        }
-        .hotspot {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: white;
-            border-radius: 50%;
-            border: 0px solid #ffffff;
-            cursor: pointer;
-            z-index: 10;
-            animation: fade 2s infinite;
-        }
-        @keyframes fade {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-        .circle-animation {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            animation: expand 2s infinite;
-            pointer-events: none;
-        }
-        @keyframes expand {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0;
-            }
-        }
-        .tooltip {
-            position: absolute;
-            background-color: white;
-            color: black;
-            font-weight: bold;
-            font-family: 'Helvetica', sans-serif;
-            border-radius: 5px;
-            padding: 5px 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease-in-out;
-            white-space: nowrap;
-            z-index: 100;
-            transform: translate(-50%, -10px); /* Ajusta la posición del tooltip */
-        }
-        /* Elimina el pseudo-elemento :after para la flecha */
-        .tooltip:after {
-            content: none;
-        }
-        @media only screen and (max-width: 768px) {
-            .hotspot {
-                width: 10px;
-                height: 10px;
-            }
-            .circle-animation {
-                width: 70px;
-                height: 70px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="navbar">
-        <img src="tu-logo.png" class="logo" alt="Exotic Club Logo">
+        <img src="tu-logo.webp" class="logo" alt="Exotic Club Logo">
         <ul>
             <li><a href="https://exoticclub.mitiendanube.com/">Inicio Fake</a></li>
             <li><a href="https://exoticclub.mitiendanube.com/productos/">Productos</a></li>
             <li><a href="https://exoticclub.mitiendanube.com/contacto/">Contacto</a></li>
         </ul>
         <div class="icons">
-            <a href="#search"><img src="icono-buscar.png" alt="Buscar"></a>
-            <a href="#account"><img src="icono-cuenta.png" alt="Cuenta"></a>
-            <a href="#cart"><img src="icono-carrito.png" alt="Carrito"></a>
+            <a href="#search"><img src="icono-buscar.webp" alt="Buscar"></a>
+            <a href="#account"><img src="icono-cuenta.webp" alt="Cuenta"></a>
+            <a href="#cart"><img src="icono-carrito.webp" alt="Carrito"></a>
         </div>
     </div>
     <div class="image-container">
-        <img src="Exotic-Web-Preview-Edited-14.png" usemap="#image-map" alt="Exotic Web Render Preview">
+        <img src="Exotic-Web-Preview-Edited-15.webp" usemap="#image-map" alt="Exotic Web Render Preview">
         <div class="hotspot" style="top: 78%; left: 24.6%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/';" data-tooltip="Zip Up Hoodie Creme"></div>
         <div class="hotspot" style="top: 86%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/';" data-tooltip="Zip Up Hoodie Grey"></div>
         <div class="hotspot" style="top: 47%; left: 56%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/exotic-club-card/';" data-tooltip="Exotic Club Card"></div>
@@ -166,59 +32,11 @@
         </map>
     </div>
     
-    <script>
-        const imageContainer = document.querySelector('.image-container');
-        const image = imageContainer.querySelector('img');
-        const hotspots = document.querySelectorAll('.hotspot');
-        const circles = [];
-        const tooltips = [];
-
-        hotspots.forEach(hotspot => {
-            const circle = document.createElement('div');
-            circle.classList.add('circle-animation');
-            circle.style.width = '100px';
-            circle.style.height = '100px';
-            circle.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 50) + 'px';
-            circle.style.top = (hotspot.offsetTop + (hotspot.clientHeight / 2) - -20) + 'px';
-            document.body.appendChild(circle);
-            circles.push(circle);
-
-            const tooltip = document.createElement('div');
-            tooltip.classList.add('tooltip');
-            tooltip.textContent = hotspot.getAttribute('data-tooltip');
-            tooltip.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 73) + 'px';
-            tooltip.style.top = (hotspot.offsetTop - (tooltip.clientHeight / 2) - -40) + 'px'; // Posicionar el tooltip arriba del hotspot
-            document.body.appendChild(tooltip);
-            tooltips.push(tooltip);
-
-            hotspot.addEventListener('mouseover', () => {
-                tooltip.style.opacity = 1;
-            });
-
-            hotspot.addEventListener('mouseout', () => {
-                tooltip.style.opacity = 0;
-            });
-        });
-
-        imageContainer.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 20 - 10;
-            const y = (e.clientY / window.innerHeight) * 20 - 10;
-            image.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-            hotspots.forEach((hotspot, index) => {
-                hotspot.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-                circles[index].style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-                tooltips[index].style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
-
-        imageContainer.addEventListener('mouseleave', () => {
-            image.style.transform = 'scale(1)';
-            hotspots.forEach((hotspot, index) => {
-                hotspot.style.transform = 'scale(1)';
-                circles[index].style.transform = 'scale(1)';
-                tooltips[index].style.transform = 'none';
-            });
-        });
-    </script>
+    <div class="instruction-text">
+        <span class="bold-text">Clickea</span><br>
+        <span class="bold-text">los</span> <span class="italic-text">items</span>
+    </div>
+    
+    <script src="scripts.js"></script>
 </body>
 </html>

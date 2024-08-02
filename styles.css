@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
+
+/* Estilos Generales */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 200;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #000;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar .logo {
+    margin-right: 20px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar ul li {
+    display: inline;
+    cursor: pointer;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    font-weight: 200;
+}
+
+.navbar .icons {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.navbar .icons img {
+    width: 22px;
+    height: auto;
+    cursor: pointer;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-container img, .image-container .hotspot, .circle-animation {
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-container:hover img, .image-container:hover .hotspot, .image-container:hover .circle-animation {
+    transform: scale(1.1);
+}
+
+.hotspot {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    border: 0px solid #ffffff;
+    cursor: pointer;
+    z-index: 10;
+    animation: fade 2s infinite;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.circle-animation {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: expand 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.tooltip {
+    position: absolute;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-family: 'Helvetica', sans-serif;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    white-space: nowrap;
+    z-index: 100;
+    transform: translate(-50%, -10px);
+}
+
+.tooltip:after {
+    content: none;
+}
+
+.instruction-text {
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: bold;
+    line-height: .90;
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.instruction-text.fade-out {
+    opacity: 0;
+}
+
+.instruction-text .bold-text {
+    font-weight: bold;
+}
+
+.instruction-text .italic-text {
+    font-family: 'Helvetica', sans-serif;
+    font-style: italic;
+    font-weight: normal;
+}
+
+/* Estilos para Desktop */
+@media (min-width: 1025px) {
+    .navbar .logo {
+        width: 90px;
+    }
+
+    .navbar ul {
+        font-size: 12px;
+    }
+
+    .navbar .icons img {
+        width: 22px;
+    }
+
+    .hotspot {
+        width: 15px;
+        height: 15px;
+    }
+
+    .instruction-text {
+        font-size: 72px;
+    }
+
+    .hotspot:nth-of-type(1) {
+        top: 78%;
+        left: 24.6%;
+    }
+
+    .hotspot:nth-of-type(2) {
+        top: 86%;
+        left: 42.7%;
+    }
+
+    .hotspot:nth-of-type(3) {
+        top: 47%;
+        left: 56%;
+    }
+}
+
+/* Estilos para Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar .logo {
+        width: 80px;
+        margin-left: -15px;
+        margin-right: 15px;
+    }
+
+    .navbar ul {
+        font-size: 14px;
+    }
+
+    .navbar .icons img {
+        width: 20px;
+    }
+
+    .hotspot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .instruction-text {
+        font-size: 40px;
+    }
+
+    .hotspot:nth-of-type(1) {
+        top: 75%;
+        left: 20%;
+    }
+
+    .hotspot:nth-of-type(2) {
+        top: 83%;
+        left: 40%;
+    }
+
+    .hotspot:nth-of-type(3) {
+        top: 45%;
+        left: 50%;
+    }
+}
+
+/* Estilos para Móviles */
+@media (max-width: 767px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .logo {
+        width: 70px;
+        margin-bottom: 10px;
+    }
+
+    .navbar ul {
+        font-size: 16px;
+    }
+
+    .navbar .icons img {
+        width: 18px;
+    }
+
+    .hotspot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .instruction-text {
+        font-size: 20px;
+    }
+
+    .hotspot:nth-of-type(1) {
+        top: 70%;
+        left: 15%;
+    }
+
+    .hotspot:nth-of-type(2) {
+        top: 80%;
+        left: 35%;
+    }
+
+    .hotspot:nth-of-type(3) {
+        top: 40%;
+        left: 45%;
+    }
+}
