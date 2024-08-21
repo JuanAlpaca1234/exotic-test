@@ -1,68 +1,70 @@
-const imageContainer = document.querySelector('.image-container');
-const image = imageContainer.querySelector('img');
-const hotspots = document.querySelectorAll('.hotspot');
-const circles = [];
-const tooltips = [];
+// URLs para cada círculo
+const urls = {
+    circle1: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-creme/',
+    circle2: 'https://shop.exotic.com.ar/productos/exotic-club-card/',
+    circle3: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-grey/'
+};
+
+// Agrega evento de clic a cada círculo
+document.querySelectorAll('circle').forEach(circle => {
+    // Animación de hover y tooltip
+    circle.addEventListener('mouseover', (e) => {
+        const tooltip = document.createElement('div');
+        tooltip.classList.add('tooltip');
+        tooltip.textContent = e.target.id === 'circle1' ? 'Zip Up Hoodie Creme' :
+                              e.target.id === 'circle2' ? 'Exotic Club Card' :
+                              'Zip Up Hoodie Grey';
+        document.body.appendChild(tooltip);
+
+        const rect = circle.getBoundingClientRect();
+        tooltip.style.left = `${rect.left + window.scrollX - -20}px`;
+        tooltip.style.top = `${rect.top + window.scrollY - 10}px`;
+        tooltip.style.opacity = '1';
+
+ 
+
+        // Al salir del hover, eliminar el tooltip y restaurar el círculo
+        circle.addEventListener('mouseout', () => {
+            tooltip.style.opacity = '0';
+            tooltip.remove();
+            e.target.style.transform = 'scale(1)';
+        });
+    });
+
+    // Evento de clic para abrir el URL correspondiente
+    circle.addEventListener('click', (e) => {
+        const circleId = e.target.id;
+        window.open(urls[circleId], '_blank');
+    });
+});
+
+// Animación de la opacidad del texto al entrar el mouse en la página
 const instructionText = document.querySelector('.instruction-text');
-
-hotspots.forEach(hotspot => {
-    const circle = document.createElement('div');
-    circle.classList.add('circle-animation');
-    circle.style.width = '100px';
-    circle.style.height = '100px';
-    circle.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 50) + 'px';
-    circle.style.top = (hotspot.offsetTop + (hotspot.clientHeight / 2) - -20) + 'px';
-    document.body.appendChild(circle);
-    circles.push(circle);
-
-    const tooltip = document.createElement('div');
-    tooltip.classList.add('tooltip');
-    tooltip.textContent = hotspot.getAttribute('data-tooltip');
-    tooltip.style.left = (hotspot.offsetLeft + (hotspot.clientWidth / 2) - 73) + 'px';
-    tooltip.style.top = (hotspot.offsetTop - (tooltip.clientHeight / 2) - -40) + 'px'; 
-    document.body.appendChild(tooltip);
-    tooltips.push(tooltip);
-
-    hotspot.addEventListener('mouseover', () => {
-        tooltip.style.opacity = 1;
-    });
-
-    hotspot.addEventListener('mouseout', () => {
-        tooltip.style.opacity = 0;
-    });
+document.body.addEventListener('mouseenter', () => {
+    instructionText.style.opacity = '0';
+    instructionText.style.transition = 'opacity 0.5s ease-in-out';
+});
+document.body.addEventListener('mouseleave', () => {
+    instructionText.style.opacity = '1';
 });
 
-imageContainer.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth) * 20 - 10;
-    const y = (e.clientY / window.innerHeight) * 20 - 10;
-    image.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-    instructionText.classList.add('fade-out');
-    hotspots.forEach((hotspot, index) => {
-        hotspot.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-        circles[index].style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
-        tooltips[index].style.transform = `translate(${x}px, ${y}px)`;
-    });
+
+// Movimiento del fondo con el mouse
+const imageContainer = document.querySelector('.image-container');
+const backgroundImage = imageContainer.querySelector('.background-image');
+
+// Aplicar una transición suave al mover la imagen
+backgroundImage.style.transition = 'transform 0.1s ease-out';
+
+document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX / window.innerWidth - 0.5) * 20; // Ajusta la intensidad del movimiento (20px en este caso)
+    const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+    
+    backgroundImage.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+    
+document.addEventListener('mouseleave', () => {
+    backgroundImage.style.transform = 'scale(1.1) translate(0, 0)';
+    backgroundImage.style.transition = 'transform 0.3s ease-out';
 });
 
-imageContainer.addEventListener('mouseleave', () => {
-    image.style.transform = 'scale(1)';
-    instructionText.classList.remove('fade-out');
-    hotspots.forEach((hotspot, index) => {
-        hotspot.style.transform = 'scale(1)';
-        circles[index].style.transform = 'scale(1)';
-        tooltips[index].style.transform = 'none';
-    });
-});
-
-imageContainer.addEventListener('scroll', () => {
-    const x = imageContainer.scrollLeft;
-    const y = imageContainer.scrollTop;
-
-    hotspots.forEach((hotspot, index) => {
-        const translateX = x * 0.1;
-        const translateY = y * 0.1;
-        hotspot.style.transform = `translate(${translateX}px, ${translateY}px)`;
-        circles[index].style.transform = `translate(${translateX}px, ${translateY}px)`;
-        tooltips[index].style.transform = `translate(${translateX}px, ${translateY}px)`;
-    });
 });
