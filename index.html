@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exotic Club</title>
+    <title>Interactive Image</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="ExoticChromeTypeWhite.png" type="image/png">
+    <style>
+        body {
+            cursor: url('old_cursor.png'), auto;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -20,23 +26,21 @@
             <a href="#cart"><img src="icono-carrito.webp" alt="Carrito"></a>
         </div>
     </div>
+    
     <div class="image-container">
-        <img src="Exotic-Web-Preview-Edited-15.webp" usemap="#image-map" alt="Exotic Web Render Preview">
-        <div class="hotspot" style="top: 78%; left: 24.6%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/';" data-tooltip="Zip Up Hoodie Creme"></div>
-        <div class="hotspot" style="top: 86%; left: 42.7%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/';" data-tooltip="Zip Up Hoodie Grey"></div>
-        <div class="hotspot" style="top: 47%; left: 56%;" onclick="window.location.href='https://exoticclub.mitiendanube.com/productos/exotic-club-card/';" data-tooltip="Exotic Club Card"></div>
-        <map name="image-map">
-            <area target="" alt="Zip Up Hoodie Creme" title="Zip Up Hoodie Creme" href="https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-creme/" coords="493,807,29" shape="circle">
-            <area target="" alt="Zip Up Hoodie Grey" title="Zip Up Hoodie Grey" href="https://exoticclub.mitiendanube.com/productos/zip-up-hoodie-grey/" coords="840,888,34" shape="circle">
-            <area target="" alt="Exotic Club Card" title="Exotic Club Card" href="https://exoticclub.mitiendanube.com/productos/exotic-club-card/" coords="600,700,30" shape="circle">
-        </map>
-    </div>
-    
+        <img src="Exotic-Web-Preview-Edited-15.webp" alt="Background Image" class="background-image">
+        <svg class="overlay" viewBox="0 0 1920 1080">
+            <circle id="circle1" cx="818" cy="1000" r="20"/>
+            <circle id="circle2" cx="1100" cy="493" r="20"/>
+            <circle id="circle3" cx="425" cy="894" r="20"/>
+        </svg>
+
     <div class="instruction-text">
-        <span class="bold-text">Clickea</span><br>
-        <span class="bold-text">los</span> <span class="italic-text">items</span>
+            <span class="bold-text">Clickea</span><br>
+            <span class="bold-text">los</span> <span class="italic-text">items</span>
+        </div>
     </div>
-    
+
     <script src="scripts.js"></script>
 </body>
 </html>
