@@ -222,35 +222,57 @@ circle {
 /* Estilos para Móviles */
 @media (max-width: 767px) {
   .navbar {
-      flex-direction: row; /* Cambiar a fila */
-      justify-content: space-between; /* Separar la logo del menú de iconos */
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
-      padding: 10px 20px; /* Ajuste de padding para más espacio */
+      padding: 10px 20px;
   }
 
   .navbar .logo {
-      width: 90px; /* Aumentar el tamaño del logo para que se vea mejor en móvil */
-      margin-bottom: 0; /* Eliminar el margen inferior */
+    width: 90px;
+    margin-bottom: 0;
   }
 
   .navbar ul {
-      display: none; /* Esconder la lista de enlaces */
+    display: none;
   }
 
   .navbar .icons {
-      display: flex;
-      gap: 15px; /* Espaciado entre iconos */
+    display: flex;
+    gap: 15px;
   }
 
   .navbar .icons img {
-      width: 24px; /* Tamaño de los iconos */
-      height: 24px; /* Ajustar altura también */
+    width: 24px;
+    height: 24px;
   }
 
   .instruction-text {
     font-size: 20px;
+    line-height: 1.2;
+    white-space: nowrap; /* Evita saltos de línea */
+    display: inline-block; /* Permite que el texto y la flecha estén en línea */
+  }
+
+  .instruction-text:before {
+    content: "Scroll y "; /* Añade "Scrollea y" antes del texto */
+  }
+
+  .instruction-text:after {
+    content: " 🡢"; /* Añade la flecha justo al final del texto */
+    padding-left: 5px; /* Añade espacio entre el texto y la flecha */
+  }
+
+  .image-container img {
+    position: absolute;
+    top: -230px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 }
+
 
 .circle-animation {
   position: absolute;
