@@ -75,7 +75,7 @@ body, html {
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen siempre sea visible completamente */
+  object-fit: cover;
   display: block;
 }
 
@@ -92,43 +92,41 @@ circle {
   fill: rgba(255, 255, 255, 0.7);
   pointer-events: auto;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.5);
-  animation: fade  2s infinite;
+  animation: fade 2s infinite;
 }
-  /* Removido el movimiento lateral */
 
-  @keyframes fade {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
+@keyframes fade {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes expand {
   0% {
-      transform: scale(0);
-      opacity: 1;
+    transform: scale(0);
+    opacity: 1;
   }
   100% {
-      transform: scale(1);
-      opacity: 0;
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
 @keyframes pulse {
   0% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
   50% {
-      transform: scale(1.1);
-      opacity: 0.7;
+    transform: scale(1.1);
+    opacity: 0.7;
   }
   100% {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -182,50 +180,50 @@ circle {
 /* Estilos para Desktop */
 @media (min-width: 1025px) {
   .navbar .logo {
-      width: 90px;
+    width: 90px;
   }
 
   .navbar ul {
-      font-size: 12px;
+    font-size: 12px;
   }
 
   .navbar .icons img {
-      width: 22px;
+    width: 22px;
   }
 
   .instruction-text {
-      font-size: 72px;
+    font-size: 72px;
   }
 }
 
 /* Estilos para Tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
   .navbar .logo {
-      width: 80px;
-      margin-left: -15px;
-      margin-right: 15px;
+    width: 80px;
+    margin-left: -15px;
+    margin-right: 15px;
   }
 
   .navbar ul {
-      font-size: 14px;
+    font-size: 14px;
   }
 
   .navbar .icons img {
-      width: 20px;
+    width: 20px;
   }
 
   .instruction-text {
     font-size: 40px;
-}
+  }
 }
 
 /* Estilos para Móviles */
 @media (max-width: 767px) {
   .navbar {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
   }
 
   .navbar .logo {
@@ -250,19 +248,18 @@ circle {
   .instruction-text {
     font-size: 20px;
     line-height: 1.2;
-    white-space: nowrap; /* Evita saltos de línea */
-    display: inline-block; /* Permite que el texto y la flecha estén en línea */
+    white-space: nowrap;
+    display: inline-block;
   }
 
   .instruction-text:before {
-    content: "Scroll y "; /* Añade "Scrollea y" antes del texto */
+    content: "Scroll y ";
   }
 
   .instruction-text:after {
-    content: " 🡢"; /* Añade la flecha justo al final del texto */
-    padding-left: 5px; /* Añade espacio entre el texto y la flecha */
+    content: " 🡢";
+    padding-left: 5px;
   }
-
 }
 
 .circle-animation {
