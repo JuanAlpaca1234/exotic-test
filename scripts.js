@@ -5,6 +5,20 @@ const urls = {
     circle3: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-grey/'
 };
 
+
+
+function adjustHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', adjustHeight);
+window.addEventListener('orientationchange', adjustHeight);
+adjustHeight();
+
+
+
+
 // Agrega evento de clic a cada círculo
 document.querySelectorAll('circle').forEach(circle => {
     // Animación de hover y tooltip
@@ -66,5 +80,10 @@ document.addEventListener('mouseleave', () => {
     backgroundImage.style.transform = 'scale(1.1) translate(0, 0)';
     backgroundImage.style.transition = 'transform 0.3s ease-out';
 });
+
+
+
+
+
 
 });
