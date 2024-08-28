@@ -280,7 +280,7 @@ circle {
 
 .image-container img {
   position: absolute;
-  top: 0;
+  top: -20vh;
   left: 0;
   width: 100%;
   height: auto;
