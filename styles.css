@@ -261,14 +261,31 @@ circle {
     padding-left: 5px;
 }
 
-  .image-container img {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+.overlay circle {
+  /* Coordenadas ajustadas en porcentaje para adaptarse al tamaño de la imagen en dispositivos móviles */
+  cx: calc(100% * (1000 / 1920)); /* Posición relativa del círculo 1 */
+  cy: calc(100% * (868 / 1080));  /* Posición relativa del círculo 1 */
+  r: 20px;
+}
+
+#circle2 {
+  cx: calc(100% * (1180 / 1920)); /* Posición relativa del círculo 2 */
+  cy: calc(100% * (493 / 1080));  /* Posición relativa del círculo 2 */
+}
+
+#circle3 {
+  cx: calc(100% * (725 / 1920)); /* Posición relativa del círculo 3 */
+  cy: calc(100% * (774 / 1080));  /* Posición relativa del círculo 3 */
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 }
 
 .circle-animation {
