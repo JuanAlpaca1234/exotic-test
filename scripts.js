@@ -1,6 +1,6 @@
 // URLs para cada círculo
 const urls = {
-    circle1: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-creme/',
+    circle1: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-beige/',
     circle2: 'https://shop.exotic.com.ar/productos/exotic-club-card/',
     circle3: 'https://shop.exotic.com.ar/productos/zip-up-hoodie-grey/'
 };
