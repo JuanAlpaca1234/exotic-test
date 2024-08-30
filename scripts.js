@@ -25,7 +25,7 @@ document.querySelectorAll('circle').forEach(circle => {
     circle.addEventListener('mouseover', (e) => {
         const tooltip = document.createElement('div');
         tooltip.classList.add('tooltip');
-        tooltip.textContent = e.target.id === 'circle1' ? 'Zip Up Hoodie Creme' :
+        tooltip.textContent = e.target.id === 'circle1' ? 'Zip Up Hoodie Beige' :
                               e.target.id === 'circle2' ? 'Exotic Club Card' :
                               'Zip Up Hoodie Grey';
         document.body.appendChild(tooltip);
