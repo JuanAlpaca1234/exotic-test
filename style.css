@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400&display=swap'); /* Importa ARAME Mono Regular */
+
+
+body, html {
+    font-family: 'Azeret Mono', monospace; /* Aplica la fuente ARAME Mono Regular */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%; /* Aseguramos que el body y html ocupen toda la altura */
+    overflow-x: hidden;
+    background-color: #000;
+    position: relative;
+}
+
+/* --- ESTILOS DEL LOGO --- */
+.logo-container {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.page-logo {
+    max-height: 120px;
+    width: auto;
+    pointer-events: none;
+}
+
+/* --- ESTILOS DEL CONTENEDOR INTERACTIVO --- */
+.interactive-image-container { /* Este es #viewport */
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 100vh; /* Asegura que el viewport ocupe toda la altura de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* IMPORTANTE: Cuando el mouse está sobre este contenedor,
+       el image-transform-wrapper pasará a pointer-events: none;
+       permitiendo que los eventos de mouse "pasen" al viewport.
+    */
+}
+
+.image-transform-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    pointer-events: auto; /* Por defecto, permite eventos de ratón para las áreas clicables */
+    transition: transform 0.4s ease-out; /* Transición por defecto para el zoom out */
+}
+
+#backgroundImage {
+    display: block;
+    min-width: 120%;
+    min-height: 120%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.clickable-area {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    animation: blobGlitchAnimation 4s infinite ease-in-out;
+    pointer-events: auto; /* Las áreas clicables siempre deben ser interactivas */
+}
+
+.clickable-area:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.clickable-area .area-fixed-label {
+    position: absolute;
+    bottom: 100%; left: 50%;
+    transform: translateX(-50%); margin-bottom: 4px;
+    color: white; padding: 2px 4px; font-size: 12px;
+    font-weight: 500;
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.8), 1px 1px 3px rgba(0,0,0,0.6), -1px -1px 3px rgba(0,0,0,0.6);
+    z-index: 5; pointer-events: none; white-space: nowrap; border-radius: 2px;
+}
+
+@keyframes blobGlitchAnimation {
+    0%, 95% { opacity: 1; transform: translate(0, 0) scale(1); border-color: rgba(255, 255, 255, 0.4); box-shadow: none; }
+    95.5% { opacity: 0.75; transform: translate(-2px, 1px) scale(1.01); border-color: rgba(100, 255, 100, 0.7); box-shadow: 0 0 3px rgba(100, 255, 100, 0.4); }
+    96% { opacity: 0.9; transform: translate(1px, -1px) scale(0.99); border-color: rgba(255, 100, 100, 0.7); box-shadow: 0 0 4px rgba(255, 100, 100, 0.4); }
+    96.5% { opacity: 0.7; transform: translate(-1px, 2px) scale(1.02); border-color: rgba(100, 100, 255, 0.7); box-shadow: 0 0 3px rgba(100, 100, 255, 0.4); }
+    97%, 100% { opacity: 1; transform: translate(0, 0) scale(1); border-color: rgba(255, 255, 255, 0.4); box-shadow: none; }
+}
+
+@media (max-width: 768px) {
+    body, html { height: 100vh; overflow: hidden; }
+    .logo-container { top: 15px; }
+    .page-logo { max-height: 40px; }
+    .interactive-image-container {
+        width: 100%; height: 100vh; overflow-x: scroll; overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; max-width: none; margin: 0;
+    }
+    .image-transform-wrapper { transform: scale(1) translate(0,0) !important; pointer-events: auto; }
+    #backgroundImage { height: 100vh; width: auto; }
+    .clickable-area .area-fixed-label { font-size: 11px; margin-bottom: 3px; }
+}
+
+/* --- ESTILOS DEL OVERLAY DE LA CÁMARA --- */
+.camera-ui-overlay {
+    position: fixed; /* Fijo respecto a la ventana */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Crucial para que el mouse pueda interactuar con lo de abajo */
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Orbitron', 'Roboto Mono', monospace;
+    z-index: 30; /* Más alto que la viñeta */
+    box-sizing: border-box;
+}
+
+.corner {
+    position: absolute;
+    width: 4vmin;
+    height: 4vmin;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.corner.top-left {
+    top: 3vmin;
+    left: 3vmin;
+    border-width: 3px 0 0 3px;
+}
+
+.corner.top-right {
+    top: 3vmin;
+    right: 3vmin;
+    border-width: 3px 3px 0 0;
+}
+
+.corner.bottom-left {
+    bottom: 3vmin;
+    left: 3vmin;
+    border-width: 0 0 3px 3px;
+}
+
+.corner.bottom-right {
+    bottom: 3vmin;
+    right: 3vmin;
+    border-width: 0 3px 3px 0;
+}
+
+.rec-indicator {
+    position: absolute;
+    top: 3.5vmin;
+    right: 4vmin;
+    font-size: calc(8px + 1vmin);
+    font-weight: bold;
+    color: #ff4d4d;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+.rec-indicator::before {
+    content: '●';
+    margin-right: 7px;
+    animation: blinkRec 1.5s infinite;
+}
+
+@keyframes blinkRec {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.cam-id-text {
+    position: absolute;
+    bottom: 3.5vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: calc(7px + 0.8vmin);
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+/* --- ESTILOS DEL OVERLAY DE LA VIÑETA --- */
+.vignette-overlay {
+    position: fixed; /* Fijo respecto a la ventana */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    pointer-events: none; /* Crucial para que el mouse pueda interactuar con lo de abajo */
+    z-index: 20;
+}
+
+/* ELIMINAMOS ESTE BLOQUE CSS por completo para quitar el texto duplicado */
+/* .camera-text-overlay-global {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'Orbitron', 'Roboto Mono', monospace;
+    font-size: 14px;
+    z-index: 40;
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+} */
+
+.rec-text {
+    color: #ff4d4d;
+    margin-left: 10px;
+}
+
+
+
+/* Pantalla de carga */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoAnim {
+    width: 200px;
+    height: auto;
+    image-rendering: pixelated;
+}
