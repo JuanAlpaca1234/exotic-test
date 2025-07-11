@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    
+<!-- No Cache -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exotic</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ExoticChromeTypeWhite.png" type="image/png">
-    <style>
-        body {
-            cursor: url('old_cursor.png'), auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar">
-        <img src="tu-logo.webp" class="logo" alt="Exotic Club Logo">
-        <ul>
-            <li><a href="https://exoticclub.mitiendanube.com/">Shop</a></li>
-            <li><a href="https://exoticclub.mitiendanube.com/productos/">Productos</a></li>
-            <li><a href="https://exoticclub.mitiendanube.com/contacto/">Contacto</a></li>
-        </ul>
-        <div class="icons">
-            <a href="https://shop.exotic.com.ar/account/login/"><img src="icono-cuenta.webp" alt="Cuenta"></a>
+<!-- Pantalla de carga -->
+<div id="loading-screen">
+    <video autoplay loop muted playsinline id="logoAnim">
+        <source src="img/ExoticLogoRotate20001-0120.webm" type="video/webm">
+    </video>
+</div>
+
+<header class="logo-container">
+    <video autoplay loop muted playsinline class="page-logo" id="logoAnimated">
+        <source src="img/ExoticLogoRotate20001-0120.webm" type="video/webm">
+    </video>
+</header>
+
+    <div class="interactive-image-container" id="viewport">
+        <div class="image-transform-wrapper" id="imageTransformWrapper">
+            <img src="img/Exotic-Bank-Preview-12.png" alt="Fondo interactivo" id="backgroundImage">
+            </div>
+
+        <img src="img/vignette-overlay.png" alt="Vignette Overlay" class="vignette-overlay">
+        <div class="camera-ui-overlay">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+            <div class="rec-indicator">REC</div>
+            <div class="cam-id-text">XTC BOVEDA CAM</div>
         </div>
     </div>
 
-    <div class="image-container">
-        <img src="Exotic-Web-Preview-Edited31.webp" alt="Background Image" class="background-image">
-        <svg class="overlay" viewBox="0 0 1920 1080">
-            <circle id="circle1" cx="818" cy="868" r="20"/>
-            <circle id="circle2" cx="1070" cy="493" r="20"/>
-            <circle id="circle3" cx="525" cy="774" r="20"/>
-        </svg>
-    
-        <div class="instruction-text">
-            <span class="bold-text">Clickea</span><br>
-            <span class="bold-text">los</span> <span class="italic-text">items</span>
-        </div>
-    </div>
-
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
